@@ -1,48 +1,42 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    // call Component's constructor first, then we can access 'this'
+    super();
+    this.state = {
+      monsters: [],
+    };
+  }
+
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((res) => res.json())
+      .then((monsters) => {
+        this.setState({
+          monsters: monsters,
+        });
+      });
+  }
+
+  // built-in function in React.Component
+  // when the state gets updated(setState() is called), this render function will be called automatically to rerender the UI
   render() {
     return (
+      // JSX is trying to mimic what HTML does and create a virtual DOM
+      // className is an JSX attribute(similar to HTML attribute class), in order to distinguish from js class.
+      // {} means inside is js expression
+      // Anytime you use the map() function inside of render, or you have a list of the same jsx elements one after another,
+      // they need a key attribute (and CRA will warn you about it if you miss it)
+      // with the key attribute, only updated items will be rerendered in the DOM
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        {this.state.monsters.map((monster) => (
+          <h1 key={monster.id}>{monster.name}</h1>
+        ))}
       </div>
     );
   }
 }
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
 
 export default App;
