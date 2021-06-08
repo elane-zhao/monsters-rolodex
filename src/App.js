@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import { CardList } from './components/card-list/card-list.component';
 
 class App extends Component {
   constructor() {
@@ -31,9 +32,11 @@ class App extends Component {
       // they need a key attribute (and CRA will warn you about it if you miss it)
       // with the key attribute, only updated items will be rerendered in the DOM
       <div className="App">
-        {this.state.monsters.map((monster) => (
-          <h1 key={monster.id}>{monster.name}</h1>
-        ))}
+        <CardList name="huan">
+          {this.state.monsters.map((monster) => (
+            <h1 key={monster.id}>{monster.name}</h1>
+          ))}
+        </CardList>
       </div>
     );
   }
