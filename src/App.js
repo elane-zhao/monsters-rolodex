@@ -30,13 +30,9 @@ class App extends Component {
       // {} means inside is js expression
       // Anytime you use the map() function inside of render, or you have a list of the same jsx elements one after another,
       // they need a key attribute (and CRA will warn you about it if you miss it)
-      // with the key attribute, only updated items will be rerendered in the DOM
+      // with the key attribute, only affected/updated items will be rerendered in the DOM
       <div className="App">
-        <CardList name="huan">
-          {this.state.monsters.map((monster) => (
-            <h1 key={monster.id}>{monster.name}</h1>
-          ))}
-        </CardList>
+        <CardList monsters={this.state.monsters}></CardList>
       </div>
     );
   }
