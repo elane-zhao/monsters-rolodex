@@ -24,6 +24,12 @@
   color: white;
 }
 
+.header {
+  font-family: 'ZCOOL KuaiLe', cursive;
+  font-size: 72px;
+  color: #61dafb;
+}
+
 .App-link {
   color: #61dafb;
 }
